@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  background: url("/images/bg.svg");
+  background-size: cover;
+  background-repeat:no-repeat;
+  background-position: center
+}
 /* @layer base {
   html,body, #root {
    @apply min-h-screen bg-black text-white antialiased;
@@ -21,7 +27,7 @@ body {
 } */
 @layer base {
   html,body, #root {
-   @apply min-h-screen bg-zinc-50;
+   @apply min-h-screen bg-bg bg-cover bg-center bg-no-repeat text-white antialiased;
   }
  }
  @layer components {

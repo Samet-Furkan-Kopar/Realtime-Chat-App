@@ -76,8 +76,8 @@ export default function Register() {
 
     return (
         <div className="h-screen bg-login flex flex-col items-center justify-center mx-auto ">
-            <div className=" p-5 flex flex-col items-center justify-center  h-[400px] bg-zinc-50 xl:w-[450px] w-[350px] rounded-md shadow-xl">
-                <h3 className="text-3xl font-semibold my-5">Register</h3>
+            <div className=" p-5 flex flex-col items-center justify-center bg-[#b5cbd7] h-[400px] xl:w-[450px] w-[350px] rounded-md shadow-xl">
+                <h3 className="text-3xl font-semibold my-5 text-black">Register</h3>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <TextField
                         margin="normal"

@@ -79,8 +79,8 @@ export default function Login() {
     };
     return (
         <div className="h-screen bg-login flex flex-col items-center justify-center mx-auto ">
-            <div className=" p-5 flex flex-col items-center justify-center  h-[400px] bg-zinc-50 xl:w-[450px] w-[350px] rounded-md shadow-xl">
-                <h3 className="text-3xl font-semibold my-5">Login</h3>
+            <div className=" p-5 flex flex-col items-center justify-center  h-[400px] bg-[#b5cbd7] xl:w-[450px] w-[350px] rounded-md shadow-xl">
+                <h3 className="text-3xl font-semibold my-5 text-black">Login</h3>
                 {/* <button className="bg-[#0288D1] p-2 text-white rounded-md font-bold">Google Giriş</button> */}
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <TextField

@@ -49,7 +49,7 @@ const Index = () => {
     return (
         <div>
             {/* {modal && <Modals />} */}
-            <Navbar />
+            
             <Outlet />
         </div>
     );
