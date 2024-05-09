@@ -4,7 +4,9 @@ const UserSlice = createSlice({
     name: "auth",
     initialState: {
         user: null,
-        token:""
+        selectedUser: null,
+        conversations:[],
+        filteredConversations: [],
       
     },
     reducers: {
@@ -14,11 +16,23 @@ const UserSlice = createSlice({
         deleteUser: (state) => {
             state.user = null;
         },
-        setToken: (state, action) => {
-            state.token = action.payload;
+        setSelectedUser: (state, action) => {
+            state.selectedUser = action.payload;
         },
-        removeToken: (state) => {
-            state.token = "";
+        deleteSelectedUser: (state) => {
+            state.selectedUser = "";
+        },
+        setConversations: (state, action) => {
+            state.conversations = action.payload;
+        },
+        deleteConversations: (state) => {
+            state.conversations = [];
+        },
+        setFilteredConversations: (state, action) => {
+            state.filteredConversations = action.payload;
+        },
+        deleteFilteredConversations: (state) => {
+            state.filteredConversations = [];
         },
     },
 });

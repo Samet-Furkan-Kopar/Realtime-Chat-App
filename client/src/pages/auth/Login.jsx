@@ -13,7 +13,7 @@ import * as yup from "yup";
 // import { setCurrentAccount } from "@/store/user/actions";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../services/authFetch";
-import { setToken, setUser } from "../../store/user/actions";
+import { setUser } from "../../store/user/actions";
 import { useDispatch } from "react-redux";
 import { showNotification } from "../../store/notifications/notificationSlice";
 
@@ -47,7 +47,7 @@ export default function Login() {
                 // await loginSession(response?.data?.user);
                 setProgress(false);
                 await setUser(response?.data?.user);
-                await setToken(response?.data?.token);
+                await localStorage.setItem("token", response?.data?.token);
                 dispatch(
                   showNotification({ type: "info", message: "Giriş Başarılı" })
               );
@@ -80,7 +80,8 @@ export default function Login() {
     return (
         <div className="h-screen bg-login flex flex-col items-center justify-center mx-auto ">
             <div className=" p-5 flex flex-col items-center justify-center  h-[400px] bg-[#b5cbd7] xl:w-[450px] w-[350px] rounded-md shadow-xl">
-                <h3 className="text-3xl font-semibold my-5 text-black">Login</h3>
+                <h3 className="text-3xl font-semibold my-5 text-black">Login <span className="text-blue-500">Chat</span>
+                    <span className="text-[#242424]">App</span></h3>
                 {/* <button className="bg-[#0288D1] p-2 text-white rounded-md font-bold">Google Giriş</button> */}
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <TextField
@@ -90,7 +91,7 @@ export default function Login() {
                         variant="outlined"
                         id="email"
                         label="Email"
-                        sx={{ color: "white" }}
+                        sx={{ color: "#b5cbd7" }}
                         type={"email"}
                         autoComplete="current-password"
                         color="info"

@@ -8,6 +8,25 @@ body {
   background-repeat:no-repeat;
   background-position: center
 }
+
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: #555;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #2B3440;
+	border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #242424;
+}
+
+
 /* @layer base {
   html,body, #root {
    @apply min-h-screen bg-black text-white antialiased;

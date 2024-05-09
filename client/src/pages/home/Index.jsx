@@ -1,15 +1,14 @@
-import Button from "../../components/button";
-import { deleteUser } from "../../store/user/actions";
+// import Button from "../../components/button";
+// import { deleteUser } from "../../store/user/actions";
+import MessageContainer from "../../components/messsages/MessageContainer";
+import Sidebar from "../../components/sidebar/Sidebar";
 
 const Home = () => {
-   
-
     return (
-        <div className="flex flex-col items-center justify-center text-[2rem] mt-12">
-            <div>Home Page</div>
-            <div className="flex items-center justify-center top-6">
-                
-                <Button onClick={() => deleteUser()}>reduxtaki user bilgisini sil</Button>
+        <div className="p-4 h-screen flex items-center justify-center">
+            <div className="flex sm:h-[450px] md:h-[550px]  overflow-hidden bg-gray-700 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-70 border border-gray-100">
+                <Sidebar />
+                <MessageContainer />
             </div>
         </div>
     );
