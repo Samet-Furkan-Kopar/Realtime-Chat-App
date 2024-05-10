@@ -1,13 +1,12 @@
 /* eslint-disable react/prop-types */
 import { Navigate, useLocation, useOutlet } from "react-router-dom";
-import { useAccount } from "../../store/user/hooks";
+import { useUser } from "../../store/user/hooks";
 
 export default function PrivateRoutes() {
-    const user = useAccount();
+    const user = useUser();
     const location = useLocation(); 
     const outlet = useOutlet();
- 
-    if (!user?.id ) {
+    if (!user?._id ) {
         return (   
             <Navigate
                 to="/auth/login"

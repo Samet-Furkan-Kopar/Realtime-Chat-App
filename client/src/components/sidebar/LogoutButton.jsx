@@ -1,12 +1,12 @@
 import LogoutIcon from "@mui/icons-material/Logout";
-import { deleteUser, deleteSelectedUser } from "../../store/user/actions";
+import { deleteUser, deleteSelectedUser, _deleteConversations } from "../../store/user/actions";
 import { useNavigate } from "react-router-dom";
 
 const LogoutButton = () => {
     const navigate = useNavigate();
 
     const logout = async () => {
-       Promise.all([deleteUser(), deleteSelectedUser()]);
+       Promise.all([deleteUser(), deleteSelectedUser(), _deleteConversations()]);
         localStorage.clear();
         navigate("/auth/login");
     };

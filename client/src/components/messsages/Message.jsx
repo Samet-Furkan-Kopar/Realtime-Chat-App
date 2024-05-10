@@ -1,9 +1,11 @@
 import React from "react";
 import { formatCreatedAtDate } from "../../utils/generalFunction";
+import { getRandomPhoto } from "../../utils/profilePhoto";
 import { useUser } from "../../store/user/hooks";
 
 const Message = ({ message }) => {
     const fromMe = message?.senderId === useUser()?._id;
+   const photo = fromMe ? getRandomPhoto() : "/images/avatar.jpg";
     const chatClassName = fromMe ? "chat-end" : "chat-start";
     const bubbleBgColor = fromMe ? "bg-blue-500" : ""
     return (
@@ -12,7 +14,7 @@ const Message = ({ message }) => {
                 <div className="w-10 rounded-full">
                     <img
                         alt="Tailwind CSS chat bubble component"
-                        src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                        src={photo}
                     />
                 </div>
             </div>

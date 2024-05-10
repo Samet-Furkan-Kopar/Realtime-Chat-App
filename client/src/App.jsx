@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-// import PrivateRoutes from "./utils/route-control/PrivateRoutes";
+import PrivateRoutes from "./utils/route-control/PrivateRoutes";
 import PublicRoutes from "./utils/route-control/PublicRoutes";
 import MainLayouts from "./layouts/main";
 import Home from "./pages/home";
@@ -13,11 +13,11 @@ export default function App() {
         <>
             <Notifications />
             <Routes>
-                {/* <Route element={<PrivateRoutes />}> */}
+                <Route element={<PrivateRoutes />}>
                 <Route path="/" element={<MainLayouts />}>
                     <Route index element={<Home />} />
                 </Route>
-                {/* </Route> */}
+                </Route>
                 <Route element={<PublicRoutes />}>
                     <Route path="/auth" element={<AuthLayout />}>
                         <Route path="login" element={<Login />} />
