@@ -11,7 +11,7 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import HttpsIcon from "@mui/icons-material/Https";
 import * as yup from "yup";
 // import { setCurrentAccount } from "@/store/user/actions";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../services/authFetch";
 import { setUser } from "../../store/user/actions";
 import { useDispatch } from "react-redux";
@@ -22,7 +22,6 @@ export default function Login() {
     const [visible, setVisible] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
 
     const schema = yup.object({
         email: yup.string().email("Email Formatı Uygun Değil"),
@@ -147,6 +146,9 @@ export default function Login() {
                         Login
                     </Button>
                 </form>
+                <Link to='/auth/register' className='text-sm text-[#242424] hover:underline hover:text-blue-600 mt-2 inline-block'>
+						{"Don't"} have an account?
+					</Link>
             </div>
         </div>
     );

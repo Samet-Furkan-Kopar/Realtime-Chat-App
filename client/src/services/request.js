@@ -30,7 +30,6 @@ async function request(url, data = null, method = "GET", type = "FORM_DATA") {
             const errorResponse = await response.text();
             throw new Error(`HTTP error! Status: ${response.status}, Body: ${errorResponse}`);
         }
-
         return await response.json();
     } catch (error) {
         console.error("Hata oluştu:", error);

@@ -10,15 +10,17 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import HttpsIcon from "@mui/icons-material/Https";
 import * as yup from "yup";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { userRegister } from "../../services/authFetch";
-// import { useAccount } from "@/store/user/hooks";
+import { useDispatch } from "react-redux";
+import { showNotification } from "../../store/notifications/notificationSlice";
 
 export default function Register() {
     const [progress, setProgress] = useState(false);
     const [visible, setVisible] = useState(false);
     // const currentAccount = useAccount();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const schema = yup.object({
         email: yup.string().email("Email Formatı Uygun Değil"),
@@ -46,10 +48,10 @@ export default function Register() {
             console.log(response);
             if (response?.succeded === true) {
                 setProgress(false);
-                // toast({
-                //     title: response?.message,
-                //   });
-                navigate("/login");
+                dispatch(
+                    showNotification({ type: "info", message: "Kayıt Başarılı" })
+                );
+                navigate("/auth/login");
             } else {
                 //    toast({title: response?.message})
             }
@@ -76,7 +78,7 @@ export default function Register() {
 
     return (
         <div className="h-screen bg-login flex flex-col items-center justify-center mx-auto ">
-            <div className=" p-5 flex flex-col items-center justify-center bg-[#b5cbd7] h-[400px] xl:w-[450px] w-[350px] rounded-md shadow-xl">
+            <div className=" p-5 flex flex-col items-center justify-center bg-[#b5cbd7] h-[420px] xl:w-[450px] w-[350px] rounded-md shadow-xl">
                 <h3 className="text-3xl font-semibold my-5 text-black">
                     Register <span className="text-blue-500">Chat</span>
                     <span className="text-[#242424]">App</span>
@@ -155,7 +157,7 @@ export default function Register() {
                         type="submit"
                         fullWidth
                         variant="contained"
-                        sx={{ mt: 3, mb: 2, textTransform: "capitalize" }}
+                        sx={{ mt: 3, mb: 2  , textTransform: "capitalize" }}
                         color="info"
                         disabled={progress}
                         startIcon={
@@ -169,6 +171,9 @@ export default function Register() {
                         Register
                     </Button>
                 </form>
+                <Link to='/auth/login' className='text-sm text-[#242424] mb-2 hover:underline hover:text-blue-600 inline-block'>
+                Already have an account?
+					</Link>
             </div>
         </div>
     );

@@ -11,6 +11,7 @@ const Conversations = () => {
     // const [conversations, setConversations] = useState([]);
     const [selectedId, setSelectedId] = useState("");
     const conversations = useConversations();
+
     console.log(conversations);
     const fetchConversations = async () => {
         try {
@@ -18,14 +19,17 @@ const Conversations = () => {
             const response = await getConversations();
             // setConversations(response?.data);
            await _setConversations(response?.data);
-
         } catch (error) {
             console.log(error);
         } finally {
             setLoading(false);
         }
     };
-
+    
+useEffect(() => {
+    if(conversations.length === 0) fetchConversations();
+}
+, [conversations]);
     const selectUser = async (selectedId) => {
         const user = conversations.find((conversation) => conversation._id === selectedId);
         await setSelectedUser(user);
@@ -43,7 +47,7 @@ const Conversations = () => {
 
     return (
         <div className="py-2 flex flex-col overflow-auto">
-            {conversations.map((conversation) => (
+            {conversations?.map((conversation) => (
                 <Conversation
                     key={conversation._id}
                     conversation={conversation}
