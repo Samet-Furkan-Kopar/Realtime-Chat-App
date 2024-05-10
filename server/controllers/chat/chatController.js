@@ -32,7 +32,11 @@ const sendMessage = tryCatch(async (req, res) => {
             conversation.messages.push(newMessage._id);
         }
         await Promise.all([conversation.save(), newMessage.save()]);
+        socket.emit("chatUser", {
+          message: newMessage,
+          });
         res.status(201).json({
+            succeded: true,
             data: newMessage,
             message: "Message sent successfully",
         });
@@ -55,6 +59,7 @@ const getMessages = tryCatch(async (req, res) => {
         if (!conversation) return res.status(200).json([]);
 
         res.status(200).json({
+            succeded: true,
             data: conversation.messages,
         });
     } catch (error) {

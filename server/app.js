@@ -22,29 +22,31 @@ app.use(express.urlencoded({
   limit: '50mb'
 }))
 
-app.use(cors(corsOptions))
-route(app);
-
 const server = app.listen(process.env.PORT, () => {
   console.log("Baglandı");
 });
-// const io = new Server(server, {
-//   cors: {
-//     origin: ["http://localhost:3000", "http://localhost:5173", "http://localhost:8800"],
-//   }
-// });
-// io.on('connection', (socket) => {
-//   console.log("on connection", socket.id);
+
+app.use(cors(corsOptions))
+route(app);
+const io = new Server(server, {
+  cors: {
+    origin: ["http://localhost:3000", "http://localhost:5173", "http://localhost:8800"],
+  }
+});
 
 
-//   socket.on('disconnect', () => {
-//     console.log("disconnected");
-//   });
 
-//   socket.on('chatUser', (data) => {
-//     console.log("chatUser", data);
-//     socket.broadcast.emit("chat", {
-//       message: data,
-//     })
-//   });
-// });
+io.on('connection', (socket) => {
+  console.log("on connection", socket.id);
+
+  socket.on('disconnect', () => {
+    console.log("disconnected");
+  });
+
+  socket.on('chatUser', (data) => {
+    console.log("chatUser", data);
+    socket.broadcast.emit("chat", {
+      message: data,
+    })
+  });
+});
